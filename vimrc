@@ -5,6 +5,8 @@ set nocompatible
 " ***********************************************************************************************************
 let mapleader = ","
 
+cabbrev W w
+
 inoremap jk <esc>
 
 vmap <C-c> "*y
@@ -50,6 +52,7 @@ set shiftwidth=2                    " Width of autoindent
 set splitbelow                      " Horizontal split below
 set splitright                      " Vertical split right
 
+set mouse=a
 function! StripTrailingWhitespace()
   let save_cursor = getpos(".")
   %s/\s\+$//e
@@ -57,11 +60,28 @@ function! StripTrailingWhitespace()
 endfunction
 
 autocmd BufWritePre *.* call StripTrailingWhitespace()
+" ***********************************************************************************************************
+" ALE
+" ***********************************************************************************************************
+let g:ale_linters = {
+\   'html': ['htmlhint'],
+\   'javascript': ['eslint'],
+\   'ruby': ['rubocop'],
+\   'scss': ['stylelint']
+\}
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_save = 1
 
 " ***********************************************************************************************************
 " FZF
 " ***********************************************************************************************************
 let g:fzf_layout = { 'down': '~25%' }
+
+" ***********************************************************************************************************
+" NERDCOMMENTER
+" ***********************************************************************************************************
+let NERDSpaceDelims=1
 
 " ***********************************************************************************************************
 " QUANTUM
@@ -86,4 +106,5 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
 Plug 'tyrannicaltoucan/vim-quantum'
 Plug 'vim-airline/vim-airline'
+Plug 'w0rp/ale'
 call plug#end()
