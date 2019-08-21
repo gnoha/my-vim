@@ -8,6 +8,7 @@ let mapleader = ","
 cabbrev W w
 
 inoremap jk <esc>
+inoremap jj <esc>
 
 vmap <C-c> "*y
 nmap <C-p> "*p
@@ -84,27 +85,8 @@ let g:fzf_layout = { 'down': '~25%' }
 let NERDSpaceDelims=1
 
 " ***********************************************************************************************************
-" QUANTUM
+" Gruvbox
 " ***********************************************************************************************************
-syntax enable
-set background=dark
-set termguicolors
-colorscheme quantum
+colorscheme gruvbox
+set background=dark 
 
-let g:airline_theme='quantum'
-
-" ***********************************************************************************************************
-" PLUGINS
-" ***********************************************************************************************************
-call plug#begin('~/.vim/plugged')
-Plug 'airblade/vim-gitgutter'
-Plug 'altercation/vim-colors-solarized'
-Plug '/usr/local/opt/fzf'
-Plug 'junegunn/fzf.vim'
-Plug 'scrooloose/nerdtree'
-Plug 'scrooloose/nerdcommenter'
-Plug 'tpope/vim-fugitive'
-Plug 'tyrannicaltoucan/vim-quantum'
-Plug 'vim-airline/vim-airline'
-Plug 'w0rp/ale'
-call plug#end()
