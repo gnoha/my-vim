@@ -10,6 +10,9 @@ cabbrev W w
 inoremap jk <esc>
 inoremap jj <esc>
 
+vnoremap `` <esc>
+nnoremap `` <esc>
+
 vmap <C-c> "*y
 nmap <C-p> "*p
 
@@ -88,5 +91,5 @@ let NERDSpaceDelims=1
 " Gruvbox
 " ***********************************************************************************************************
 colorscheme gruvbox
-set background=dark 
+set background=dark
 
