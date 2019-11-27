@@ -6,6 +6,7 @@ set nocompatible
 let mapleader = ","
 
 cabbrev W w
+nnoremap Q :q<CR>
 
 inoremap jk <esc>
 inoremap jj <esc>
@@ -22,7 +23,8 @@ nnoremap tt :tabnew<CR>
 nnoremap tc :tabclose<CR>
 nnoremap to :tabonly<CR>
 
-map <Leader>f :Files .<CR>
+map <Leader>t :FZF<CR>
+map <Leader>f :Buffer<CR>
 
 map \           :NERDTreeToggle<CR>
 map \|          :NERDTreeFind<CR>
@@ -49,9 +51,9 @@ set laststatus=2                    " Always show statusline
 
 set expandtab                       " Use softtabs
 set tabstop=2                       " Tab settings
+set shiftwidth=2                    " Width of autoindent
 set autoindent
 set smarttab                        " Use shiftwidth to tab at line beginning
-set shiftwidth=2                    " Width of autoindent
 
 set splitbelow                      " Horizontal split below
 set splitright                      " Vertical split right
@@ -64,6 +66,9 @@ function! StripTrailingWhitespace()
 endfunction
 
 autocmd BufWritePre *.* call StripTrailingWhitespace()
+
+set autowriteall                   " Save when doing various buffer-switching things.
+autocmd BufLeave,FocusLost * silent! wall
 " ***********************************************************************************************************
 " ALE
 " ***********************************************************************************************************
