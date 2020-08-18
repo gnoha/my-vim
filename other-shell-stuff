@@ -1,41 +1,6 @@
-COLOR_RED="\033[1;35m"
-COLOR_YELLOW="\033[0;33m"
-COLOR_GREEN="\033[1;32m"
-COLOR_OCHRE="\033[38;5;95m"
-COLOR_BLUE="\033[1;34m"
-COLOR_WHITE="\033[0;37m"
-COLOR_RESET="\033[0m"
-
-function git_color {
-  local git_status="$(git status 2> /dev/null)"
-
-  if [[ ! $git_status =~ "working tree clean" ]]; then
-    echo -e $COLOR_RED
-  elif [[ $git_status =~ "Your branch is ahead of" ]]; then
-    echo -e $COLOR_YELLOW
-  elif [[ $git_status =~ "nothing to commit" ]]; then
-    echo -e $COLOR_GREEN
-  else
-    echo -e $COLOR_OCHRE
-  fi
+parse_git_branch() {
+     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-function git_branch {
-  local git_status="$(git status 2> /dev/null)"
-  local on_branch="On branch ([^${IFS}]*)"
-  local on_commit="HEAD detached at ([^${IFS}]*)"
-
-  if [[ $git_status =~ $on_branch ]]; then
-    local branch=${BASH_REMATCH[1]}
-    echo "($branch)"
-  elif [[ $git_status =~ $on_commit ]]; then
-    local commit=${BASH_REMATCH[1]}
-    echo "($commit)"
-  fi
-}
-
-
-PS1="\w "
-PS1+="\[\$(git_color)\]"
-PS1+="\$(git_branch)"
-PS1+="\[$COLOR_RESET\]\n└─▷ "
+setopt PROMPT_SUBST
+PROMPT='%1/ %B$(parse_git_branch)%b'$'\n⮑  '
