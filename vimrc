@@ -73,10 +73,8 @@ autocmd BufLeave,FocusLost * silent! wall
 " ALE
 " ***********************************************************************************************************
 let g:ale_linters = {
-\   'html': ['htmlhint'],
 \   'javascript': ['eslint'],
 \   'ruby': ['rubocop'],
-\   'scss': ['stylelint']
 \}
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
@@ -85,7 +83,7 @@ let g:ale_lint_on_save = 1
 " ***********************************************************************************************************
 " FZF
 " ***********************************************************************************************************
-let g:fzf_layout = { 'down': '~25%' }
+let g:fzf_preview_window = 'right:40%'
 
 " ***********************************************************************************************************
 " NERDCOMMENTER
@@ -95,6 +93,12 @@ let NERDSpaceDelims=1
 " ***********************************************************************************************************
 " Gruvbox
 " ***********************************************************************************************************
-colorscheme gruvbox
+" colorscheme gruvbox
+" set background=dark
+
+colo seoul256
 set background=dark
+
+let g:airline_theme='papercolor'
+
 
